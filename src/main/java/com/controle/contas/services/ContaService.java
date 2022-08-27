@@ -1,8 +1,6 @@
 package com.controle.contas.services;
 
-import com.controle.contas.dto.ContaDto;
 import com.controle.contas.entities.Conta;
-import com.controle.contas.entities.Usuario;
 import com.controle.contas.repositories.ContaRepository;
 import com.controle.contas.services.exceptions.DatabaseException;
 import com.controle.contas.services.exceptions.ResourceNotFoundException;
@@ -21,9 +19,6 @@ public class ContaService {
 
     @Autowired
     private ContaRepository contaRepository;
-    @Autowired
-    private UsuarioService usuarioService;
-
 
     public List<Conta> findAll(){
         return contaRepository.findAll();
@@ -38,9 +33,8 @@ public class ContaService {
 //        return contaRepository.findAllContaByIdUsuario(id);
 //    }
 
-    public Conta save(ContaDto obj){
-        Conta conta = contaDtoToConta(obj);
-        return contaRepository.save(conta);
+    public Conta save(Conta obj){
+        return contaRepository.save(obj);
     }
 
     public Conta update(Long id, Conta newObj) {
@@ -70,9 +64,9 @@ public class ContaService {
         entity.setValor(newObj.getValor());
     }
 
-    public Conta contaDtoToConta(ContaDto objDto) {
-        Usuario usuario = usuarioService.findById(objDto.getUsuario_id());
-        return new Conta(objDto.getCompra(), objDto.getDescricao(), objDto.getValor(), usuario);
-    }
+//    public Conta contaDtoToConta(ContaDto objDto) {
+//        Usuario usuario = usuarioService.findById(objDto.getUsuario_id());
+//        return new Conta(objDto.getCompra(), objDto.getDescricao(), objDto.getValor(), usuario);
+//    }
 
 }

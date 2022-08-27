@@ -1,6 +1,5 @@
 package com.controle.contas.resources;
 
-import com.controle.contas.dto.ContaDto;
 import com.controle.contas.entities.Conta;
 import com.controle.contas.services.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class ContaResource {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<Conta> save(@RequestBody ContaDto obj){
+    public ResponseEntity<Conta> save(@RequestBody Conta obj){
         Conta conta = contaService.save(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(conta.getId()).toUri();
         return ResponseEntity.created(uri).body(conta);
