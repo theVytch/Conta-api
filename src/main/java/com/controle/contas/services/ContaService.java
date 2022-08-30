@@ -29,10 +29,6 @@ public class ContaService {
         return obj.orElseThrow(() ->  new IllegalStateException(id+" não encontrado"));
     }
 
-//    public List<Conta> findAllByIdUsuario(Long id){
-//        return contaRepository.findAllContaByIdUsuario(id);
-//    }
-
     public Conta save(Conta obj){
         return contaRepository.save(obj);
     }

@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/conta")
+@RequestMapping("/contas")
 public class ContaResource {
 
     @Autowired
@@ -31,12 +31,6 @@ public class ContaResource {
         Conta obj = contaService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-
-//    @GetMapping("/usuario/{id}")
-//        public ResponseEntity<List<Conta>> findAllByIdUsuario(@PathVariable Long id){
-//        List<Conta> obj = contaService.findAllByIdUsuario(id);
-//        return ResponseEntity.ok().body(obj);
-//    }
 
     @PostMapping
     @Transactional
