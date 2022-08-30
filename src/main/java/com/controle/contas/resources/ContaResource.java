@@ -1,6 +1,5 @@
 package com.controle.contas.resources;
 
-import com.controle.contas.dto.ContaDto;
 import com.controle.contas.entities.Conta;
 import com.controle.contas.services.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/conta")
+@RequestMapping("/contas")
 public class ContaResource {
 
     @Autowired
@@ -33,15 +32,9 @@ public class ContaResource {
         return ResponseEntity.ok().body(obj);
     }
 
-//    @GetMapping("/usuario/{id}")
-//        public ResponseEntity<List<Conta>> findAllByIdUsuario(@PathVariable Long id){
-//        List<Conta> obj = contaService.findAllByIdUsuario(id);
-//        return ResponseEntity.ok().body(obj);
-//    }
-
     @PostMapping
     @Transactional
-    public ResponseEntity<Conta> save(@RequestBody ContaDto obj){
+    public ResponseEntity<Conta> save(@RequestBody Conta obj){
         Conta conta = contaService.save(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(conta.getId()).toUri();
         return ResponseEntity.created(uri).body(conta);

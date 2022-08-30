@@ -25,19 +25,13 @@ public class Conta implements Serializable {
     private String descricao;
     private Double valor;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
-
     public Conta() {
     }
 
-    public Conta(String compra, String descricao, Double valor, Usuario usuario) {
+    public Conta(String compra, String descricao, Double valor) {
         this.compra = compra;
         this.descricao = descricao;
         this.valor = valor;
-        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -78,14 +72,6 @@ public class Conta implements Serializable {
 
     public void setValor(Double valor) {
         this.valor = valor;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     @Override

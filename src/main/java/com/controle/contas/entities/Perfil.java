@@ -1,6 +1,7 @@
 package com.controle.contas.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,16 +14,18 @@ public class Perfil implements Serializable {
     private Long id;
 
     @Column(unique = true, name = "login")
-    private String nome;
+    @NotEmpty(message = "{campo.login.obrigatorio}")
+    private String username;
 
     @Column(name = "senha")
-    private String senha;
+    @NotEmpty(message = "campo.senha.obrigatorio")
+    private String password;
 
     public Perfil(){}
 
-    public Perfil(String nome, String senha) {
-        this.nome = nome;
-        this.senha = senha;
+    public Perfil(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Long getId() {
@@ -33,20 +36,20 @@ public class Perfil implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
